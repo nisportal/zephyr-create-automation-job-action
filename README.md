@@ -3,9 +3,9 @@
 This GitHub Action uploads a test results file to Zephyr and creates/executing an automation job using Zephyr's API.
 
 ### Features
-- Upload a test results file (e.g., `zephyr.xml`).
 - Create and execute an automation job in Zephyr.
-- Supports configurable options for job details like `cycleName`, `releaseId`, `projectId`, `automationFramework`, and more.
+- Upload a test results file (e.g., `zephyr.xml`).
+- Supports configurable options for job details read more [here](https://zephyrdocs.atlassian.net/wiki/spaces/ZE/pages/3456598141/API+Operations+for+Automation+Jobs#Create-and-execute-a-job).
   
 ### Inputs
 
@@ -34,30 +34,8 @@ This GitHub Action uploads a test results file to Zephyr and creates/executing a
 Below is an example GitHub Actions workflow using this custom action. This workflow demonstrates how to execute a Zephyr automation job as part of a CI pipeline after tests are run.
 
 ```yaml
-name: Run Zephyr Automation Job
-
-on:
-  workflow_dispatch: # Manually triggered
-  push: # Triggered on push to the repo
-
-jobs:
-  create-zephyr-job:
-    runs-on: ubuntu-latest
-
-    steps:
-    # Step 1: Checkout the repository
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    # Step 2: Run your tests (for example, using Maven)
-    - name: Run Tests
-      run: |
-        mvn clean test
-        # Assuming test results are saved as zephyr.xml in the target directory
-
-    # Step 3: Upload and create the automation job in Zephyr
     - name: Create and Execute Zephyr Automation Job
-      uses: your-username/zephyr-create-automation-job-action@v1.0.0
+      uses: seggit/zephyr-create-automation-job-action
       with:
         filePath: './target/zephyr.xml'                        # Path to the test results file
         releaseId: '5'                                         # Release ID in Zephyr
