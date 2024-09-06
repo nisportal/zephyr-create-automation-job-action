@@ -1,0 +1,62 @@
+name: 'Zephyr Create and Execute Automation Job'
+description: 'creates/executes an automation job in Zephyr and upload the result'
+author: 'seggit'
+branding:
+  icon: 'zap'
+  color: 'blue'
+inputs:
+  filePath:
+    description: 'string. The file path for the automation test results file'
+    required: true
+  releaseId:
+    description: 'Integer. The identifier of the release, to which the new job will post the results.'
+    required: true
+  jobName:
+    description: 'String. The name of the new job. It will identify the job in the product UI. This parameter cannot be an empty string.'
+    required: true
+  automationFramework:
+    description: 'String. The automation framework to be used for the test run. Use the same values that the Automation Framework drop-down list in the product UI has'
+    required: true
+  cycleName:
+    description: 'String. The name of the cycle to be used.'
+    required: true
+  jobDetailTcrCatalogTreeId:
+    description: 'Integer. Id of the test case repository item.'
+    required: true
+  projectId:
+    description: 'Integer. The identifier of the project, to which the new job will post the results.'
+    required: true
+  testRepositoryPath:
+    description: 'string. The Zephyr test repository that contains the tests to be executed. Use the names as they are shown in the product UI. Separate levels with the > symbol, for example, "Release 1.0 > new". '
+    required: true
+  cycleStartDateStr:
+    description: 'String. The cycle start date (mm/dd/yyyy)'
+    required: true
+  cycleEndDateStr:
+    description: 'String. The cycle end date (mm/dd/yyyy)'
+    required: true
+  isReuse:
+    description: 'true or false. Specifies if the test engine will use the same cycle for all the automation runs (true) or if it will create a new cycle for each run (false).'
+    required: true
+  timeStamp:
+    description: 'true or false. Include timestamp in the cycle'
+    required: true
+  createPackage:
+    description: 'true or false. Create a package for the results.'
+    required: true
+  assignResultsTo:
+    description: 'Integer. The id of the user to whom the test engine will assign results.'
+    required: true
+  phaseName:
+    description: 'String. The cycle phase to be used for the run.'
+    required: true
+  zephyrBaseUrl:
+    description: 'string. The base URL of the Zephyr instance'
+    required: true
+  zephyrApiToken:
+    description: 'string. Your Zephyr API token'
+    required: true
+
+runs:
+  using: 'node20'
+  main: 'index.js'
